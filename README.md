@@ -1,4 +1,4 @@
-# 1.2-Lingo
+# 1.2-Lingo opdracht
 
 de opdracht
 Tijdens deze opdracht ga je het spel Lingo programmeren in de web browser. Hierbij maak je gebruik van HTML, CSS en Javascript.
