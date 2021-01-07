@@ -5,7 +5,7 @@ Tijdens deze opdracht ga je het spel Lingo programmeren in de web browser. Hierb
 
 De opdracht bestaat uit twee type eisen, functionele eisen en technische eisen. Je moet aan alle deze eisen voldoen!
 
-# zie bestanden voor mijn uitwerking van de opdracht
+### zie bestanden voor mijn uitwerking van de opdracht
 
 ## Wat is Lingo
 
