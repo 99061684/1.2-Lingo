@@ -1,11 +1,11 @@
 # 1.2-Lingo opdracht
 
+### zie bestanden voor mijn uitwerking van de opdracht
+
 de opdracht
 Tijdens deze opdracht ga je het spel Lingo programmeren in de web browser. Hierbij maak je gebruik van HTML, CSS en Javascript.
 
 De opdracht bestaat uit twee type eisen, functionele eisen en technische eisen. Je moet aan alle deze eisen voldoen!
-
-### zie bestanden voor mijn uitwerking van de opdracht
 
 ## Wat is Lingo
 
@@ -37,3 +37,5 @@ Het spel selecteert willekeurig (random) een woord uit de woordenlijst.
 ## Bonus
 
 Het gehele spel is gemaakt door gebruik te maken van javascript objecten.
+
+### zie bestanden voor mijn uitwerking van de opdracht
