@@ -118,39 +118,48 @@ function create_element(id_rij, aantal_letters) {
     }
 }
 
+function create_element2(element_create, id_append, id_element, text) {
+    var element = document.createElement(element_create);
+    element.id = id_element;    
+    if (text != null) {
+        element.innerHTML = text; 
+    } 
+    
+    if (id_append == "body") {
+        document.body.appendChild(element);
+    } else {
+        var element_append = document.getElementById(id_append);
+        element_append.appendChild(element);   
+    }
+}
+
+function create_input(element_create, id_append, id_element, type, text, placeholder) {
+    var element = document.createElement(element_create);
+    element.id = id_element;    
+    element.type = type; 
+    if (text != "" && text != null) {
+        element.innerHTML = text; 
+    } 
+    if (placeholder != "" && placeholder != null) {
+        element.placeholder = placeholder;
+    } 
+    
+    if (id_append == "body") {
+        document.body.appendChild(element);
+    } else {
+        var element_append = document.getElementById(id_append);
+        element_append.appendChild(element);   
+    }
+}
+
 function create_pagina() {
-    var element1 = document.createElement("div");
-    element1.id = id_pagina_elementen[0];    
-    document.body.appendChild(element1);
-
-    var element2 = document.createElement("div");
-    element2.id = id_pagina_elementen[1];    
-    element1.appendChild(element2);
-
-    var element3 = document.createElement("div");
-    element3.id = id_pagina_elementen[2];    
-    element1.appendChild(element3);
-
-    var element4 = document.createElement("p");
-    element4.id = id_pagina_elementen[3];
-    element4.innerHTML = "gemaakt door: Bas Verdoorn";    
-    element3.appendChild(element4);
-
-    var element4 = document.createElement("div");
-    element4.id = id_pagina_elementen[4];    
-    element2.appendChild(element4);
-
-    var element5 = document.createElement("input");
-    element5.id = id_pagina_elementen[5]; 
-    element5.type = "text";
-    element5.placeholder = "raad hier het woord...";       
-    element4.appendChild(element5);
-
-    var element6 = document.createElement("button");
-    element6.id =  id_pagina_elementen[6]; 
-    element6.type = "submit";
-    element6.innerHTML = "check";       
-    element4.appendChild(element6);
+    create_element2("div", "body", id_pagina_elementen[0]);
+    create_element2("div", id_pagina_elementen[0], id_pagina_elementen[1]);
+    create_element2("div", id_pagina_elementen[0], id_pagina_elementen[2]);
+    create_element2("p", id_pagina_elementen[2], id_pagina_elementen[3], "gemaakt door: Bas Verdoorn");
+    create_element2("div", id_pagina_elementen[1], id_pagina_elementen[4]);
+    create_input("input", id_pagina_elementen[4], id_pagina_elementen[5], "text", "", "raad hier het woord...");
+    create_input("button", id_pagina_elementen[4], id_pagina_elementen[6], "submit", "check");
 
     //vaste variabelen (deze kunnen alleen veranderden door de code/functies).
     user_input = document.getElementById(id_pagina_elementen[5]); 
@@ -160,6 +169,7 @@ function create_pagina() {
         check_woord();        
     };
 }
+
 
 //speciale instellingen
 function toon_letter(aantal_rijen, id_rij, letter_index) {
