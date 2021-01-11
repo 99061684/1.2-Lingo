@@ -4,15 +4,14 @@
 var user_input = document.getElementById("user_input"); 
 var submit_button = document.getElementById("submit_button"); 
 
-var woord = words[Math.round(Math.random() * words.length) + 1];
-console.log(woord);
+var woord = words[Math.round(Math.random() * words.length)];
 var woord2 = "";
 var rij_nummer = 0;
 
 //de id en classes van sommige elementen in de html.
 const id_rij = "rij"; //het id van elke rij (excl. de rijnummer).
 const class_letter = "letter"; //de class van elke letter div.
-const id_pagina_elementen = ["speelbord", "background_lingo", "woord_check", "gemaakt_door", "form", "user_input", "submit_button"];
+const id_pagina_elementen = ["speelbord", "background_lingo", "woord_check", "gemaakt_door", "form", "user_input", "submit_button", "reset_button"];
 
 //  game variabelen (deze kunnen worden aangepast om het spel onder andere een andere moeilijkheidsgraad te geven).
 var aantal_letters = 5; //het aantal letters waaruit het woord dat geraden moet worden bestaat.
@@ -28,6 +27,9 @@ start_game();
 
 //start
 function start_game() {
+    woord = words[Math.round(Math.random() * words.length)];
+    console.log(woord);
+
     create_pagina();
 
     get_aantal_letters();
@@ -135,8 +137,10 @@ function create_element2(element_create, id_append, id_element, text) {
 
 function create_input(element_create, id_append, id_element, type, text, placeholder) {
     var element = document.createElement(element_create);
-    element.id = id_element;    
-    element.type = type; 
+    element.id = id_element; 
+    if (type != "" && type != null) {
+        element.type = type; 
+    }    
     if (text != "" && text != null) {
         element.innerHTML = text; 
     } 
@@ -153,6 +157,7 @@ function create_input(element_create, id_append, id_element, type, text, placeho
 }
 
 function create_pagina() {
+    //maakt de complete lingo pagina
     create_element2("div", "body", id_pagina_elementen[0]);
     create_element2("div", id_pagina_elementen[0], id_pagina_elementen[1]);
     create_element2("div", id_pagina_elementen[0], id_pagina_elementen[2]);
@@ -160,14 +165,28 @@ function create_pagina() {
     create_element2("div", id_pagina_elementen[1], id_pagina_elementen[4]);
     create_input("input", id_pagina_elementen[4], id_pagina_elementen[5], "text", "", "raad hier het woord...");
     create_input("button", id_pagina_elementen[4], id_pagina_elementen[6], "submit", "check");
+    create_input("button", id_pagina_elementen[4], id_pagina_elementen[7], "", "reset");
 
     //vaste variabelen (deze kunnen alleen veranderden door de code/functies).
     user_input = document.getElementById(id_pagina_elementen[5]); 
     submit_button = document.getElementById(id_pagina_elementen[6]); 
+    reset_button = document.getElementById(id_pagina_elementen[7]); 
 
-    submit_button.onclick = function() {
-        check_woord();        
-    };
+    if (submit_button != null) {
+        submit_button.onclick = function() {
+            check_woord();        
+        };
+    } else {
+        console.log("submit_button == null");
+    }
+
+    if (reset_button != null) {
+        reset_button.onclick = function() {
+            reset();        
+        };
+    } else {
+        console.log("reset_button == null");
+    }
 }
 
 
@@ -180,7 +199,11 @@ function toon_letter(aantal_rijen, id_rij, letter_index) {
 }
 
 function get_aantal_letters() {
-    aantal_letters = woord.length;
+    if (woord.length != undefined) {
+        aantal_letters = woord.length;
+    } else{
+        console.log("woord.length == undefined, het woord was:" + woord);
+    }
 }
 
 function user_input_enter_event() {
@@ -194,6 +217,26 @@ function user_input_enter_event() {
       submit_button.click();
     }
   });
+}
+
+function reset() {
+    //veranderd de var terug naar oorspronkelijke waarde
+    rij_nummer = 0;
+
+    //delete pagina
+    delete_all_elements();
+    
+    //start de game
+    start_game();
+}
+
+function delete_all_elements() {
+    var node= document.getElementById(id_pagina_elementen[0]);
+    if (node != null) {
+        node.remove();
+    } else {
+        console.log("node == null, unable to remove alle elements on page.");
+    }
 }
 
 //hulp functies 

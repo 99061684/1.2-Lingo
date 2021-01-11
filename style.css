@@ -38,6 +38,11 @@
     width: 100px;
 }
 
+#reset_button {
+    align-self: center;
+    width: 100px;
+}
+
 #woord_check {
     border: 2px solid black;
 
