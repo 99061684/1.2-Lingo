@@ -27,7 +27,12 @@ start_game();
 
 //start
 function start_game() {
-    woord = words[Math.round(Math.random() * words.length)];
+    var keuze_letters_aantal = Math.round(Math.random() * 11);
+    if (keuze_letters_aantal >= 5) {
+        woord = words[Math.round(Math.random() * words.length)];
+    } else {
+        woord = words2[Math.round(Math.random() * words2.length)];
+    }
     console.log(woord);
 
     create_pagina();
